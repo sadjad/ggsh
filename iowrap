@@ -1,0 +1,19 @@
+#!/bin/bash
+
+INFILE=$1
+OUTFILE=$2
+shift; shift
+
+if [ "$INFILE" == "-" ]; then
+    if [ "$OUTFILE" == "-" ]; then
+        exit 1
+    else
+        eval $@ >$OUTFILE
+    fi
+else
+    if [ "$OUTFILE" == "-" ]; then
+        eval $@ <$INFILE
+    else
+        eval $@ <$INFILE >$OUTFILE
+    fi
+fi
