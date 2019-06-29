@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 INFILE=$1
 OUTFILE=$2
@@ -8,12 +8,12 @@ if [ "$INFILE" == "-" ]; then
     if [ "$OUTFILE" == "-" ]; then
         exit 1
     else
-        eval $@ >$OUTFILE
+        command "$@" >$OUTFILE
     fi
 else
     if [ "$OUTFILE" == "-" ]; then
-        eval $@ <$INFILE
+        command "$@" <$INFILE
     else
-        eval $@ <$INFILE >$OUTFILE
+        command "$@" <$INFILE >$OUTFILE
     fi
 fi
