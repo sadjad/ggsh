@@ -1,0 +1,12 @@
+#!/bin/bash -e
+
+INPUT_HASH=`gg-hash $1`
+PROG_NAME=cat
+IOWRAP_HASH="VkIXLi2AvcdLUIbAIYdr4IfjH5c.ikp.MZ4QNEELTWPY00000133"
+
+gg-create-thunk \
+    --value ${INPUT_HASH}=$1 \
+    --executable ${IOWRAP_HASH}=iowrap \
+    --output out \
+    --placeholder out \
+    ${IOWRAP_HASH} iowrap - out ${PROG_NAME} @{GGHASH:${INPUT_HASH}} 2>&1

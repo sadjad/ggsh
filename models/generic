@@ -1,0 +1,13 @@
+#!/bin/bash -e
+
+read INPUT_HASH
+
+PROG_NAME=`basename $0`
+IOWRAP_HASH="VkIXLi2AvcdLUIbAIYdr4IfjH5c.ikp.MZ4QNEELTWPY00000133"
+
+gg-create-thunk \
+    --thunk ${INPUT_HASH} \
+    --executable ${IOWRAP_HASH}=iowrap \
+    --output out \
+    --placeholder out \
+    ${IOWRAP_HASH} iowrap @{GGHASH:${INPUT_HASH}} out ${PROG_NAME} -- "$@" 2>&1
